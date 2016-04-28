@@ -4,7 +4,7 @@ class LinksController < ApplicationController
   before_action :authorized_user, only: [:edit, :update, :destroy]
   before_filter :authenticate_user!, except: [:index, :show]
   def index
-    ordered_links = Link.order(cached_votes_up: :desc)
+    ordered_links = Link.order(cached_votes_down: :desc)
     @links = ordered_links.paginate(page: params[:page], per_page: 5)
 
     respond_to do |format|
